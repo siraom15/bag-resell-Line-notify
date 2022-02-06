@@ -1,0 +1,19 @@
+{
+  "name": "checkstocklinenotify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "formdata-polyfill": "^4.0.10",
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.7"
+  },
+  "type": "module"
+}
