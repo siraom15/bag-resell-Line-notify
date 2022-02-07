@@ -3,7 +3,7 @@ import { pushNotify } from './line-notify.js';
 
 export async function getDataAndSend() {
   let data = await checkAll();
-  console.log(data + new Date().toLocaleString());
+  console.log(JSON.stringify(data) + new Date().toLocaleString());
   let shouldSend = false;
   let message = '';
   data.forEach((e) => {
@@ -16,12 +16,11 @@ export async function getDataAndSend() {
       message += `ข้อมูล ${new Date().toLocaleString()}\n==========\n`;
     }
   });
-  
+
   if (shouldSend) {
     console.log('Have avaiable');
     let result = await pushNotify(message);
     if (result.status === 200) {
-      console.log('Send');
       console.log('Avaiable And Send Message');
     } else {
       console.log('Error');
