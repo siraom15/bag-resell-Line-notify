@@ -3,6 +3,7 @@ import { pushNotify } from './line-notify.js';
 
 export async function getDataAndSend() {
   let data = await checkAll();
+  console.log(data + new Date().toLocaleString());
   let shouldSend = false;
   let message = '';
   data.forEach((e) => {
@@ -11,12 +12,13 @@ export async function getDataAndSend() {
       message += `\nชื่อกระเป๋า : ${e.bagName}\n`;
       message += `พร้อมขาย : พร้อม 😀😀\n`;
       message += `ลิ้งค์สินค้า : ${e.buyUrl}\n`;
-      message += `คงเหลือ : ${e.qty} ใบ\n==========\n`;
+      message += `คงเหลือ : ${e.qty} ใบ\n`;
+      message += `ข้อมูล ${new Date().toLocaleString()}\n==========\n`;
     }
   });
-  message += `ข้อมูล ${new Date().toLocaleString()}\n`;
-  message += `อัปเดตข้อมูลทุก 30 นาที`;
+  
   if (shouldSend) {
+    console.log('Have avaiable');
     let result = await pushNotify(message);
     if (result.status === 200) {
       console.log('Send');
@@ -25,5 +27,7 @@ export async function getDataAndSend() {
       console.log('Error');
       console.log(result);
     }
+  } else {
+    console.log("Don' t Have avaiable");
   }
 }
